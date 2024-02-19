@@ -1,4 +1,5 @@
-Cấu hình mẫu cho một switch SAN Cisco MDS 9148S. Trong ví dụ này, chúng tôi sẽ thiết lập ba cổng và một VSAN, sau đó tạo một zone và gán một thiết bị lưu trữ vào zone đó. Đảm bảo thay thế các giá trị thực tế như địa chỉ MAC và địa chỉ IP theo yêu cầu của bạn:
+Cấu hình mẫu cho một switch SAN Cisco MDS 9148S. 
+Trong dưới đây là cấu hình mẫu lưu ý hãy theo mô hình doanh nghiệp của bạn sẽ thiết lập ba cổng và một VSAN, sau đó tạo một zone và gán một thiết bị lưu trữ vào zone đó. Đảm bảo thay thế các giá trị thực tế như địa chỉ MAC và địa chỉ IP theo yêu cầu của bạn:
 
 ```
 ! Bắt đầu cấu hình
