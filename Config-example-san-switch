@@ -1,37 +1,45 @@
 Dưới đây là một ví dụ về cấu hình nâng cao cho một switch SAN Cisco MDS 9148S, bao gồm việc thiết lập Inter-Switch Link (ISL), sử dụng Access Control Lists (ACLs), cấu hình giám sát và bảo mật SNMP, và thiết lập Secure Shell (SSH) để quản lý từ xa:
 
-```
-! Bắt đầu cấu hình
-switch# configure terminal
 
+## ! Bắt đầu cấu hình
+```
+switch# configure terminal
+```
 ! Thiết lập ISL trên cổng fc1/5 và fc1/6 để kết nối với các switch khác
+```
 switch(config)# interface fc1/5
 switch(config-if)# switchport mode trunk
 switch(config-if)# interface fc1/6
 switch(config-if)# switchport mode trunk
-
+```
 ! Tạo Access Control List (ACL) để kiểm soát truy cập vào các dịch vụ quản trị
+```
 switch(config)# ip access-list standard MANAGEMENT_ACCESS
 switch(config-std-nacl)# permit 10.0.0.0 0.255.255.255
 switch(config-std-nacl)# permit 192.168.0.0 0.0.255.255
-
+```
 ! Áp dụng ACL vào các dịch vụ quản trị như Telnet, SSH, SNMP
+```
 switch(config)# line vty 0 15
 switch(config-line)# access-class MANAGEMENT_ACCESS in
-
+```
 ! Thiết lập SNMP với community string và giới hạn truy cập
+```
 switch(config)# snmp-server community VNG_Cloud_222 RO 10
 switch(config)# snmp-server host 192.168.0.10 traps version 2c VNG_Cloud_222
 switch(config)# snmp-server enable traps
-
+```
 ! Thiết lập Secure Shell (SSH) để quản lý từ xa
+```
 switch(config)# ip ssh server
-
+```
 ! Thiết lập logging và giám sát
+```
 switch(config)# logging server 192.168.0.20
 switch(config)# logging facility local6
-
+```
 ! Lưu cấu hình và thoát
+```
 switch(config)# exit
 switch# copy running-config startup-config
 switch# exit
